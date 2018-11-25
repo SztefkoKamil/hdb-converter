@@ -1,4 +1,46 @@
 
+function binToHex(input){
+  if(/^[01]+$/.test(input)){
+    const dividedBin = input.toString().split('');
+
+    while(!(dividedBin.length % 4 == 0)){
+      dividedBin.unshift('0');
+    }
+    let group = [];
+    const groupedBin = [];
+    
+    for(let i = dividedBin.length-1; i>=0; i--){
+      group.unshift(dividedBin[i]);
+      if(group.length === 4){
+        groupedBin.unshift(group.join(''));
+        group = [];
+      }
+    }
+
+    return groupedBin.reduce((a, x) => {
+      if(x === '1111'){ return a += 'f'; }
+      else if(x === '1110'){ return a += 'e'; }
+      else if(x === '1101'){ return a += 'd'; }
+      else if(x === '1100'){ return a += 'c'; }
+      else if(x === '1011'){ return a += 'b'; }
+      else if(x === '1010'){ return a += 'a'; }
+      else if(x === '1001'){ return a += '9'; }
+      else if(x === '1000'){ return a += '8'; }
+      else if(x === '0111'){ return a += '7'; }
+      else if(x === '0110'){ return a += '6'; }
+      else if(x === '0101'){ return a += '5'; }
+      else if(x === '0100'){ return a += '4'; }
+      else if(x === '0011'){ return a += '3'; }
+      else if(x === '0010'){ return a += '2'; }
+      else if(x === '0001'){ return a += '1'; }
+      else if(x === '0000'){ return a += '0'; }
+    },'');
+  }
+  else {
+    return 'WRONG INPUT';
+  }
+}
+
 function hexToBin(input){
   input = input.toString().toLowerCase();
   if(/^[0-9abcdef]+$/.test(input)){
