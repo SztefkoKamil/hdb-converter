@@ -1,4 +1,28 @@
 
+function hexToDec(input){
+  if(/^[0-9abcdef]+$/.test(input)){
+    const toBin = hexToBin(input);
+    const result = binToDec(toBin);
+
+    return result;
+  }
+  else {
+    return 'WRONG INPUT';
+  }
+}
+
+function decToHex(input){
+  if(/^[0-9]+$/.test(input)){
+    const toBin = decToBin(input);
+    const result = binToHex(toBin);
+
+    return result;
+  }
+  else {
+    return 'WRONG INPUT';
+  }
+}
+
 function binToDec(input){
   if(/^[01]+$/.test(input)){
     let bin = input;
