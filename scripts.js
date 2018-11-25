@@ -1,3 +1,47 @@
+window.onload = () => {
+  const input = document.getElementById('hdb-input');
+  const output = document.getElementById('hdb-output');
+  const inputSelect = document.getElementById('hdb-input-select');
+  const outputSelect = document.getElementById('hdb-output-select');
+  const optionHex = document.getElementById('option-hex');
+  const optionDec = document.getElementById('option-dec');
+  const optionBin = document.getElementById('option-bin');
+  const options = [optionHex, optionDec, optionBin];
+  const convertButton = document.getElementById('convertButton');
+
+  input.value = '';
+  output.value = '';
+  inputSelect.value = 'hex';
+  outputSelect.value = 'dec';
+  optionHex.setAttribute('disabled', 'disabled');
+
+  inputSelect.onchange = () => {
+    for(let i of options){
+      i.removeAttribute('disabled');
+    }
+    
+    if(inputSelect.value === 'hex'){ optionHex.setAttribute('disabled', 'disabled') }
+    else if(inputSelect.value === 'dec'){ optionDec.setAttribute('disabled', 'disabled') }
+    else if(inputSelect.value === 'bin'){ optionBin.setAttribute('disabled', 'disabled') }
+  }
+
+  convertButton.onclick = () => {
+    const inputType = inputSelect.value;
+    const outputType = outputSelect.value;
+
+    let result = null;
+
+    if(inputType === 'hex' && outputType === 'dec'){ result = hexToDec(input.value); }
+    else if(inputType === 'dec' && outputType === 'hex'){ result = decToHex(input.value); }
+    else if(inputType === 'bin' && outputType === 'dec'){ result = binToDec(input.value); }
+    else if(inputType === 'dec' && outputType === 'bin'){ result = decToBin(input.value); }
+    else if(inputType === 'bin' && outputType === 'hex'){ result = binToHex(input.value); }
+    else if(inputType === 'hex' && outputType === 'bin'){ result = hexToBin(input.value); }
+
+    output.value = result;
+  }
+
+}
 
 function hexToDec(input){
   if(/^[0-9abcdef]+$/.test(input)){
