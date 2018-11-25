@@ -1,3 +1,46 @@
+function decToBin(input){
+  if(/^[0-9]+$/.test(input)){
+    let dec = input;
+
+    let weight = 1;
+    let turn = 0;
+
+    while(true){
+      turn++;
+      weight *= 2;
+      if(weight > dec){
+        weight /= 2;
+        break;
+      }
+    }
+
+    let result = [];
+
+    while(turn > 0){
+      turn--;
+      if(weight > dec){
+        result.push('0');
+        weight /= 2;
+      }
+      else {
+        result.push('1');
+        dec -= weight;
+        weight /= 2;
+      }
+
+    }
+
+    while(!(result.length % 4 == 0)){
+      result.unshift('0');
+    }
+
+    result = result.join('');
+    return result;
+  }
+  else {
+    return 'WRONG INPUT';
+  }
+}
 
 function binToHex(input){
   if(/^[01]+$/.test(input)){
