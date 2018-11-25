@@ -1,3 +1,36 @@
+
+function binToDec(input){
+  if(/^[01]+$/.test(input)){
+    let bin = input;
+
+    const lenght = bin.length;
+    let weight = [];
+    let w = 1;
+    let result = 0;
+      
+    if(lenght==1 && bin==1){ return 1; }
+    else if(lenght==1 && bin==0){ return 0; }
+      
+    weight.unshift(w);
+      
+    for(let i=1; i<lenght; i++){
+      w *= 2;
+      weight.unshift(w);
+    }
+    
+    for(let i=0; i<lenght; i++){
+      if(bin[i]==1){
+      result += weight[i];
+      }
+    }  
+    
+    return result;
+  }
+  else {
+    return 'WRONG INPUT';
+  }
+}
+
 function decToBin(input){
   if(/^[0-9]+$/.test(input)){
     let dec = input;
