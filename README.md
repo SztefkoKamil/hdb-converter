@@ -1,8 +1,9 @@
-# hdb-converter
+
 hex, dec, bin converter
 
-You can use it at:
-http://webkas.pl/hdb-converter/
+Project was made with HTML, CSS & JavaScript.
+
+You can see thes project here: http://webkas.pl/projects/hdb-converter/
 
 Convert numbers:
 hex to dec,
