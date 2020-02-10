@@ -1,7 +1,7 @@
 
 hex, dec, bin converter
 
-Project was made with HTML, CSS & JavaScript.
+Project was made with HTML, Bootstrap & JavaScript.
 
 You can see thes project here: https://webkas.pl/projects/hdb-converter/
 
