@@ -3,7 +3,7 @@ hex, dec, bin converter
 
 Project was made with HTML, CSS & JavaScript.
 
-You can see thes project here: http://webkas.pl/projects/hdb-converter/
+You can see thes project here: https://webkas.pl/projects/hdb-converter/
 
 Convert numbers:
 hex to dec,
