@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('hdb-input');
   const output = document.getElementById('hdb-output');
   const inputSelect = document.getElementById('hdb-input-select');
@@ -7,7 +7,7 @@ window.onload = () => {
   const optionDec = document.getElementById('option-dec');
   const optionBin = document.getElementById('option-bin');
   const options = [optionHex, optionDec, optionBin];
-  const convertButton = document.getElementById('convertButton');
+  const form = document.getElementById('form');
 
   input.value = '';
   output.value = '';
@@ -15,7 +15,7 @@ window.onload = () => {
   outputSelect.value = 'dec';
   optionHex.setAttribute('disabled', 'disabled');
 
-  inputSelect.onchange = () => {
+  inputSelect.addEventListener('change', () => {
     for(let i of options){
       i.removeAttribute('disabled');
     }
@@ -23,9 +23,11 @@ window.onload = () => {
     if(inputSelect.value === 'hex'){ optionHex.setAttribute('disabled', 'disabled') }
     else if(inputSelect.value === 'dec'){ optionDec.setAttribute('disabled', 'disabled') }
     else if(inputSelect.value === 'bin'){ optionBin.setAttribute('disabled', 'disabled') }
-  }
+  });
+  
 
-  convertButton.onclick = () => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
     const inputType = inputSelect.value;
     const outputType = outputSelect.value;
 
@@ -39,9 +41,9 @@ window.onload = () => {
     else if(inputType === 'hex' && outputType === 'bin'){ result = hexToBin(input.value); }
 
     output.value = result;
-  }
+  });
+});
 
-}
 
 function hexToDec(input){
   if(/^[0-9abcdef]+$/.test(input)){
