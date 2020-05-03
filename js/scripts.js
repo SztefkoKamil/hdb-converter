@@ -32,6 +32,8 @@ window.addEventListener('load', () => {
     inputBtn.textContent = type;
     inputType = type;
     if (inputType === outputType) changeOutputType(inputType);
+    input.value = '';
+    output.value = '';
   }
 
   function outputItemClickHandler(e) {
@@ -39,6 +41,7 @@ window.addEventListener('load', () => {
     if (inputType !== type) {
       outputBtn.textContent = type;
       outputType = type;
+      output.value = '';
     }
   }
 
