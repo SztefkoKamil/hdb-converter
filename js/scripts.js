@@ -3,16 +3,13 @@ import { hexToDec, decToHex, binToDec, decToBin, binToHex, hexToBin } from './co
 window.addEventListener('load', () => {
   const input = document.querySelector('#hdb-input');
   const output = document.querySelector('#hdb-output');
-
   const inputBtn = document.querySelector('.input-btn');
   const inputItems = [...document.querySelectorAll('.input-item')];
-
   const outputBtn = document.querySelector('.output-btn');
   const outputItems = [...document.querySelectorAll('.output-item')];
-  const outputHex = document.getElementById('output-hex');
-  const outputDec = document.getElementById('output-dec');
-  const outputBin = document.getElementById('output-bin');
-
+  const outputHex = document.querySelector('#output-hex');
+  const outputDec = document.querySelector('#output-dec');
+  const outputBin = document.querySelector('#output-bin');
   const form = document.querySelector('#form');
 
   let inputType = 'HEX';
@@ -21,29 +18,34 @@ window.addEventListener('load', () => {
   output.value = '';
 
   inputItems.map(item => {
-    item.addEventListener('click', e => {
-      const type = e.target.textContent;
-      inputBtn.textContent = type;
-      inputType = type;
-      if (inputType === outputType) changeOutputType(inputType);
-    });
+    item.addEventListener('click', inputItemClickHandler);
   });
 
   outputItems.map(item => {
-    item.addEventListener('click', e => {
-      const type = e.target.textContent;
-      if (inputType !== type) {
-        outputBtn.textContent = type;
-        outputType = type;
-      }
-    });
+    item.addEventListener('click', outputItemClickHandler);
   });
+
+  form.addEventListener('submit', formSubmitHandler);
+
+  function inputItemClickHandler(e) {
+    const type = e.target.textContent;
+    inputBtn.textContent = type;
+    inputType = type;
+    if (inputType === outputType) changeOutputType(inputType);
+  }
+
+  function outputItemClickHandler(e) {
+    const type = e.target.textContent;
+    if (inputType !== type) {
+      outputBtn.textContent = type;
+      outputType = type;
+    }
+  }
 
   function changeOutputType(inputType) {
     outputItems.map(i => {
       i.classList.remove('disabled');
     });
-
     if (inputType === 'HEX') {
       outputType = 'DEC';
       outputBtn.textContent = 'DEC';
@@ -59,25 +61,13 @@ window.addEventListener('load', () => {
     }
   }
 
-  form.addEventListener('submit', e => {
+  function formSubmitHandler(e) {
     e.preventDefault();
-
-    let result = null;
-
-    if (inputType === 'HEX' && outputType === 'DEC') {
-      result = hexToDec(input.value);
-    } else if (inputType === 'DEC' && outputType === 'HEX') {
-      result = decToHex(input.value);
-    } else if (inputType === 'BIN' && outputType === 'DEC') {
-      result = binToDec(input.value);
-    } else if (inputType === 'DEC' && outputType === 'BIN') {
-      result = decToBin(input.value);
-    } else if (inputType === 'BIN' && outputType === 'HEX') {
-      result = binToHex(input.value);
-    } else if (inputType === 'HEX' && outputType === 'BIN') {
-      result = hexToBin(input.value);
-    }
-
-    output.value = result;
-  });
+    if (inputType === 'HEX' && outputType === 'DEC') output.value = hexToDec(input.value);
+    else if (inputType === 'DEC' && outputType === 'HEX') output.value = decToHex(input.value);
+    else if (inputType === 'BIN' && outputType === 'DEC') output.value = binToDec(input.value);
+    else if (inputType === 'DEC' && outputType === 'BIN') output.value = decToBin(input.value);
+    else if (inputType === 'BIN' && outputType === 'HEX') output.value = binToHex(input.value);
+    else if (inputType === 'HEX' && outputType === 'BIN') output.value = hexToBin(input.value);
+  }
 });
