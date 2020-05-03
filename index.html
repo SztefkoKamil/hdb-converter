@@ -1,47 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="webkas">
-  <meta name="robots" content="index, follow">
-  <meta name="discription" content="opis">
-  <meta name="keywords" content="hex converter, dec converter, bin converter, hexadecimal converter, decimal converter, binary converter, hex to dec converter, hex to bin converter, dec to hex converter, dec to bin converter, bin to hex converter, bin to dec converter, hexadecimal to decimal converter, hexadecimal to binary converter, decimal to hexadecimal converter, decimal to binary converter, binary to hexadedcimal converter, binary to decimal converter">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="scripts.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="webkas" />
+    <meta name="robots" content="index, follow" />
+    <meta name="discription" content="opis" />
+    <meta
+      name="keywords"
+      content="hex converter, dec converter, bin converter, hexadecimal converter, decimal converter, binary converter, hex to dec converter, hex to bin converter, dec to hex converter, dec to bin converter, bin to hex converter, bin to dec converter, hexadecimal to decimal converter, hexadecimal to binary converter, decimal to hexadecimal converter, decimal to binary converter, binary to hexadedcimal converter, binary to decimal converter"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="scripts.js"></script>
 
-  <title>HDB-CONVERTER</title>
-</head>
-<body style="background-color: lightgray;">
-  <main class="container">
-    <div class="row">
-      <section class="col bg-info my-5 p-5">
-        <h1 class="text-center">HDB CONVERTER</h1>
-        <p class="text-center">Convert hexadecimal, decimal and binary numbers.</p>
-        <form id="form">
-          <div class="form-group text-center">
-            <select id="hdb-input-select">
-              <option value="hex">hex</option>
-              <option value="dec">dec</option>
-              <option value="bin">bin</option>
-            </select>
-            <input class="text-light form-control-sm bg-dark" type="text" id="hdb-input">
-          </div>
-          <p class="text-center">TO</p>
-            <div class="form-group text-center">
-              <select id="hdb-output-select">
-                <option id="option-hex" value="hex">hex</option>
-                <option id="option-dec" value="dec">dec</option>
-                <option id="option-bin" value="bin">bin</option>
-              </select>
-              <input class="text-light form-control-sm bg-dark" type="text" id="hdb-output">
+    <title>HDB-CONVERTER</title>
+  </head>
+  <body
+    class="d-flex flex-column justify-content-between"
+    style="background-color: rgb(209, 238, 248); min-height: 100vh;"
+  >
+    <main class="container">
+      <div class="row">
+        <section class="col my-md-5 p-5">
+          <h1 class="text-center">HDB CONVERTER</h1>
+          <p class="text-center mb-5">Convert hexadecimal, decimal and binary numbers.</p>
+          <form id="form">
+            <div class="form-group text-center d-flex justify-content-center">
+              <div class="dropdown mr-3">
+                <button
+                  class="btn btn-info dropdown-toggle input-btn"
+                  type="button"
+                  id="input-dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  HEX
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item input-item" id="input-hex" href="#">HEX</a>
+                  <a class="dropdown-item input-item" id="input-dec" href="#">DEC</a>
+                  <a class="dropdown-item input-item" id="input-bin" href="#">BIN</a>
+                </div>
+              </div>
+              <input class="text-light form-control-sm bg-dark p-3" type="text" id="hdb-input" />
             </div>
-            <button id="convertButton" class="btn btn-warning mx-auto mt-5 d-block">Convert</button>
-        </form>
-      </section>
-    </div>
-  </main>
-  <footer class="text-center text-light bg-dark py-3 position-fixed fixed-bottom">Kamil Sztefko 2018 &copy Wszelkie prawa zastrzeżone.</footer>
-</body>
+            <div class="text-center mb-3" style="line-height: 100%;">
+              <svg
+                class="bi bi-arrow-down"
+                width="60px"
+                height="60px"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.646 9.646a.5.5 0 01.708 0L8 12.293l2.646-2.647a.5.5 0 01.708.708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 010-.708z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M8 2.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V3a.5.5 0 01.5-.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div class="form-group text-center d-flex justify-content-center">
+              <div class="dropdown mr-3">
+                <button
+                  class="btn btn-info dropdown-toggle output-btn"
+                  type="button"
+                  id="output-dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  DEC
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item output-item disabled" id="output-hex" href="#">HEX</a>
+                  <a class="dropdown-item output-item" id="output-dec" href="#">DEC</a>
+                  <a class="dropdown-item output-item" id="output-bin" href="#">BIN</a>
+                </div>
+              </div>
+              <input class="text-light form-control-sm bg-dark p-3" type="text" id="hdb-output" />
+            </div>
+            <button id="convertButton" class="btn btn-warning btn-lg mx-auto mt-5 d-block">
+              Convert
+            </button>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer class="text-center text-light bg-dark py-3 px-5">
+      Kamil Sztefko 2018 &copy Wszelkie prawa zastrzeżone.
+    </footer>
+  </body>
 </html>
